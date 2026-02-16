@@ -26,16 +26,35 @@ class WebRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(contenido.encode("utf-8"))
 
     def get_response(self):
+        contenido = {
+        "/": """
+        <html>
+            <h1>Home Page</h1>
+            <a href="/proyecto/web-uno">Web Uno</a><br>
+            <a href="/proyecto/web-dos">Web Dos</a><br>
+            <a href="/proyecto/web-tres">Web Tres</a>
+        </html>
+        """,
+        "/proyecto/web-uno": """
+        <html>
+            <h1>Proyecto: web-uno</h1>
+        </html>
+        """,
+        "/proyecto/web-dos": """
+        <html>
+            <h1>Proyecto: web-dos</h1>
+        </html>
+        """,
+        "/proyecto/web-tres": """
+        <html>
+            <h1>Proyecto: web-tres</h1>
+        </html>
+        """
+    }
+
         path = self.url().path
 
-        if path == "/":
-            try:
-                with open("home.html", "r", encoding="utf-8") as f:
-                    return f.read()
-            except FileNotFoundError:
-                return f"<h1>Proyecto: {proyecto} Autor: {autor}</h1>"
-
-        return None
+        return contenido.get(path, None)
 
 if __name__ == "__main__":
     print("Starting server")
