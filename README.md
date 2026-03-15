@@ -95,7 +95,7 @@ contenido = {
     '/proyecto/web-tres': """<html>...</html>""",
 }
 ```
-
+Actualización para demostración del servidor
 Dependiendo del valor de la ruta solicitada, el servidor debe regresar el contenido correspondiente utilzando
 la ruta como la llave en el diccionario.
 
